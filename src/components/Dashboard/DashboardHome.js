@@ -24,6 +24,7 @@ import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   faSliders,
   faCommentDots,
@@ -31,7 +32,7 @@ import {
   faSackDollar,
   faCircleInfo,
   faPenToSquare,
-  faPrint
+  faPrint,
 } from "@fortawesome/free-solid-svg-icons";
 import user from "../../img/user2.jpg";
 const Search = styled("div")(({ theme }) => ({
@@ -76,6 +77,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
 const drawerWidth = 240;
 
 function DashboardHome(props) {
@@ -99,6 +101,42 @@ function DashboardHome(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const useStyle = makeStyles({
+    dashLink: {
+      display: "flex",
+      alignItems: "center",
+      color: "black",
+      //   padding: "3px 0",
+      fontWeight: "400 !important",
+      textDecoration: "none",
+      fontSize: "15px !important",
+    },
+    activeColor: {
+      display: "flex",
+      alignItems: "center",
+      color: "white",
+      // padding: "3px 0",
+      fontWeight: "400 !important",
+      textDecoration: "none",
+      fontSize: "15px !important",
+      backgroundColor: "#0D53FC !important",
+      width: "100% !important",
+    },
+    removeBorder: {
+      padding: "0 !important",
+      marginTop:"1rem !important"
+    },
+    navContainer: {
+      background: "#F2F5F9 !important",
+      // borderBottom: "1px solid black !important",
+      boxShadow: "0 0 0 0 !important",
+    },
+  });
+
+  const { dashLink, navContainer, activeColor, removeBorder } = useStyle();
+  console.log();
+  const { pathname } = useLocation();
+  console.log(pathname);
   const drawer = (
     <div>
       <Box
@@ -126,47 +164,52 @@ function DashboardHome(props) {
       </Box>
 
       <List>
-        <ListItem button>
-          <ListItemIcon>
+        <ListItem button className={removeBorder}>
+          <ListItemIcon sx={{ paddingLeft: "0.9rem",}}>
             <FontAwesomeIcon icon={faCalendarDays} />
           </ListItemIcon>
           <ListItemText primary="Overview" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
+        <ListItem button className={removeBorder}>
+          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
             <FontAwesomeIcon icon={faCalendarDays} />
           </ListItemIcon>
           <ListItemText primary="Calender" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PersonOutlineOutlinedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Patient List" />
+        <ListItem button className={removeBorder}>
+          <Link
+            to="/patientList"
+            className={pathname === "/patientList" ? activeColor : dashLink}
+          >
+            <ListItemIcon sx={{ paddingLeft: "0.6rem" }}>
+              <PersonOutlineOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Patient List" />
+          </Link>
         </ListItem>
 
-        <ListItem button>
-          <ListItemIcon>
+        <ListItem button className={removeBorder}>
+          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
             <FontAwesomeIcon icon={faCommentDots} />
           </ListItemIcon>
           <ListItemText primary="Messages" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
+        <ListItem button className={removeBorder}>
+          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
             <FontAwesomeIcon icon={faSackDollar} />
           </ListItemIcon>
           <ListItemText primary="Payment Information" />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
+        <ListItem button className={removeBorder}>
+          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
             <FontAwesomeIcon icon={faSliders} />
           </ListItemIcon>
           <ListItemText primary="Setting" />
         </ListItem>
 
-        <Box sx={{ marginTop: "10rem !important" }}>
-          <ListItem sx={{ borderBottom: "1px solid #d3ddea" }}>
-            <ListItemIcon>
+        <Box sx={{ marginTop: "13rem !important" }}>
+          <ListItem sx={{ borderBottom: "1px solid #d3ddea" }} className={removeBorder}>
+            <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
               <FontAwesomeIcon icon={faCircleInfo} />
             </ListItemIcon>
             Help ?
@@ -202,14 +245,6 @@ function DashboardHome(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const useStyle = makeStyles({
-    navContainer: {
-      background: "#F2F5F9 !important",
-      // borderBottom: "1px solid black !important",
-      boxShadow: "0 0 0 0 !important",
-    },
-  });
-  const { navContainer } = useStyle();
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -315,39 +350,40 @@ function DashboardHome(props) {
               paddingRight: "24px",
             }}
           >
-          <Box
-            sx={{
-              height: "30px",
-              width: "50px",
-              background: "white",
-              color: "gray",
-              paddingTop: "5px",
-              borderRadius: "3px",
-              bottom: "15px",
-              right: "15px",
-              fontSize: "0.9rem",
-              fontWeight: "600",
-              marginRight:"1rem"
-            }}
-          >
-            <FontAwesomeIcon icon={faPrint}/>
-          </Box>
-          <Box
-            sx={{
-              height: "30px",
-              width: "120px",
-              background: "white",
-              color: "gray",
-              paddingTop: "5px",
-              borderRadius: "3px",
-              bottom: "15px",
-              right: "15px",
-              fontSize: "0.9rem",
-              fontWeight: "600",
-            }}
-          >
-            <FontAwesomeIcon icon={faPenToSquare}/><span sx={{marginLeft:"1rem !important"}}>Edit Patient</span> 
-          </Box>
+            <Box
+              sx={{
+                height: "30px",
+                width: "50px",
+                background: "white",
+                color: "gray",
+                paddingTop: "5px",
+                borderRadius: "3px",
+                bottom: "15px",
+                right: "15px",
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                marginRight: "1rem",
+              }}
+            >
+              <FontAwesomeIcon icon={faPrint} />
+            </Box>
+            <Box
+              sx={{
+                height: "30px",
+                width: "120px",
+                background: "white",
+                color: "gray",
+                paddingTop: "5px",
+                borderRadius: "3px",
+                bottom: "15px",
+                right: "15px",
+                fontSize: "0.9rem",
+                fontWeight: "600",
+              }}
+            >
+              <FontAwesomeIcon icon={faPenToSquare} />
+              <span sx={{ marginLeft: "1rem !important" }}>Edit Patient</span>
+            </Box>
           </Box>
         </Box>
       </AppBar>
@@ -400,7 +436,8 @@ function DashboardHome(props) {
       >
         <Toolbar />
         <Box sx={{ height: "100px", marginTop: "80px" }}>
-          <PatientList patient={patient} />
+          {/* <PatientList patient={patient} /> */}
+          <Outlet />
         </Box>
       </Box>
     </Box>

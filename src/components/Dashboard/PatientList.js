@@ -7,9 +7,17 @@ import ArticleIcon from "@mui/icons-material/Article";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-const PatientList = ({ patient }) => {
+import DashboardHome from './DashboardHome';
+
+const PatientList = () => {
   const [appointment, setAppointment] = useState([]);
+  const [patient, setPatient] = useState([]);
   const [files, setFiles] = useState([]);
+  useEffect(() => {
+    fetch("https://619f39821ac52a0017ba467e.mockapi.io/patientDetails")
+      .then((res) => res.json())
+      .then((data) => setPatient(data));
+  }, []);
   useEffect(() => {
     fetch("https://619f39821ac52a0017ba467e.mockapi.io/patientDetails")
       .then((res) => res.json())
@@ -25,6 +33,7 @@ const PatientList = ({ patient }) => {
   console.log(files);
   return (
     <div>
+    {/* <DashboardHome/> */}
       <Grid container spacing={2}>
         <Grid item lg={3} xl={3}>
           <Box
