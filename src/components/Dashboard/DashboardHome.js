@@ -29,8 +29,9 @@ import {
   faCommentDots,
   faCalendarDays,
   faSackDollar,
-  faPlusCircle,
   faCircleInfo,
+  faPenToSquare,
+  faPrint
 } from "@fortawesome/free-solid-svg-icons";
 import user from "../../img/user2.jpg";
 const Search = styled("div")(({ theme }) => ({
@@ -75,7 +76,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
 const drawerWidth = 240;
 
 function DashboardHome(props) {
@@ -99,7 +99,6 @@ function DashboardHome(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawer = (
     <div>
       <Box
@@ -107,8 +106,8 @@ function DashboardHome(props) {
           display: "flex",
           alignItems: "center",
           textAlign: "start",
-          marginTop:"1.5rem",
-          marginBottom:"1rem",
+          marginTop: "1.5rem",
+          marginBottom: "1rem",
         }}
       >
         <img
@@ -117,8 +116,12 @@ function DashboardHome(props) {
           height="60px"
         ></img>
         <Box>
-        <Typography>Zendenta</Typography>
-        <Typography>Cobut gigi tanpa sakit</Typography>
+          <Typography variant="h5" sx={{ color: "#2D3B4C", fontWeight: "600" }}>
+            Zendenta
+          </Typography>
+          <Typography sx={{ fontSize: "0.8rem", color: "gray" }}>
+            Cobut gigi tanpa sakit
+          </Typography>
         </Box>
       </Box>
 
@@ -161,14 +164,13 @@ function DashboardHome(props) {
           <ListItemText primary="Setting" />
         </ListItem>
 
-        <Box sx={{ marginTop: "8rem !important" }}>
+        <Box sx={{ marginTop: "10rem !important" }}>
           <ListItem sx={{ borderBottom: "1px solid #d3ddea" }}>
             <ListItemIcon>
               <FontAwesomeIcon icon={faCircleInfo} />
             </ListItemIcon>
             Help ?
           </ListItem>
-          {/* <hr sx={{color:"#d3ddea !important"}} /> */}
           <ListItem>
             <Box
               sx={{
@@ -180,9 +182,14 @@ function DashboardHome(props) {
             >
               <Avatar src={user} alt="" />
               <Box sx={{ marginLeft: "0.8rem !important" }}>
-                {doctor[0]?.name}
-                <br />
-                <Typography>{doctor[0]?.specification}</Typography>
+                <Typography
+                  sx={{ fontSize: "1rem", color: "#2D3B4C", fontWeight: "600" }}
+                >
+                  {doctor[0]?.name}
+                </Typography>
+                <Typography sx={{ fontSize: "0.8rem", color: "gray" }}>
+                  {doctor[0]?.specification}
+                </Typography>
               </Box>
               <ExpandMoreIcon sx={{ marginLeft: "2rem !important" }} />
             </Box>
@@ -299,6 +306,49 @@ function DashboardHome(props) {
           >
             {patient[0]?.name}
           </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+              marginLeft: "auto",
+              paddingRight: "24px",
+            }}
+          >
+          <Box
+            sx={{
+              height: "30px",
+              width: "50px",
+              background: "white",
+              color: "gray",
+              paddingTop: "5px",
+              borderRadius: "3px",
+              bottom: "15px",
+              right: "15px",
+              fontSize: "0.9rem",
+              fontWeight: "600",
+              marginRight:"1rem"
+            }}
+          >
+            <FontAwesomeIcon icon={faPrint}/>
+          </Box>
+          <Box
+            sx={{
+              height: "30px",
+              width: "120px",
+              background: "white",
+              color: "gray",
+              paddingTop: "5px",
+              borderRadius: "3px",
+              bottom: "15px",
+              right: "15px",
+              fontSize: "0.9rem",
+              fontWeight: "600",
+            }}
+          >
+            <FontAwesomeIcon icon={faPenToSquare}/><span sx={{marginLeft:"1rem !important"}}>Edit Patient</span> 
+          </Box>
+          </Box>
         </Box>
       </AppBar>
       <Box
@@ -349,7 +399,7 @@ function DashboardHome(props) {
         }}
       >
         <Toolbar />
-        <Box sx={{ height: "100px", marginTop: "100px" }}>
+        <Box sx={{ height: "100px", marginTop: "80px" }}>
           <PatientList patient={patient} />
         </Box>
       </Box>
