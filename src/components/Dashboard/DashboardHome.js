@@ -26,6 +26,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
+  faGaugeSimple,
   faSliders,
   faCommentDots,
   faCalendarDays,
@@ -105,9 +106,8 @@ function DashboardHome(props) {
     dashLink: {
       display: "flex",
       alignItems: "center",
-      color: "black",
-      //   padding: "3px 0",
-      fontWeight: "400 !important",
+      color: "#2D3B4C !important",
+      fontWeight: "700!important",
       textDecoration: "none",
       fontSize: "15px !important",
     },
@@ -115,26 +115,43 @@ function DashboardHome(props) {
       display: "flex",
       alignItems: "center",
       color: "white",
-      // padding: "3px 0",
       fontWeight: "400 !important",
       textDecoration: "none",
+      // css18nal3aMuiListItemIconRootColor:"white !important",
       fontSize: "15px !important",
       backgroundColor: "#0D53FC !important",
       width: "100% !important",
     },
     removeBorder: {
       padding: "0 !important",
-      marginTop:"1rem !important"
+      marginTop: "1rem !important",
     },
     navContainer: {
       background: "#F2F5F9 !important",
       // borderBottom: "1px solid black !important",
       boxShadow: "0 0 0 0 !important",
     },
+    iconColor: {
+      color: "white !important",
+    },
+    iconInactive: {
+      color: "gray !important",
+    },
+    editIcon:{
+      marginRight: "0.4rem !important"
+    }
   });
 
-  const { dashLink, navContainer, activeColor, removeBorder } = useStyle();
-  console.log();
+  const {
+    dashLink,
+    navContainer,
+    activeColor,
+    removeBorder,
+    iconColor,
+    iconInactive,
+    editIcon
+  } = useStyle();
+
   const { pathname } = useLocation();
   console.log(pathname);
   const drawer = (
@@ -152,6 +169,7 @@ function DashboardHome(props) {
           src="https://i.ibb.co/p2dgpCB/family-dentist-in-calgary-ab-thorncliffe-family-dental-plant-label-text-logo-transparent-png-2068738.png"
           width="100px"
           height="60px"
+          alt="patientImage"
         ></img>
         <Box>
           <Typography variant="h5" sx={{ color: "#2D3B4C", fontWeight: "600" }}>
@@ -165,23 +183,42 @@ function DashboardHome(props) {
 
       <List>
         <ListItem button className={removeBorder}>
-          <ListItemIcon sx={{ paddingLeft: "0.9rem",}}>
-            <FontAwesomeIcon icon={faCalendarDays} />
-          </ListItemIcon>
-          <ListItemText primary="Overview" />
+          <Link
+            to="/overview"
+            className={pathname === "/overview" ? activeColor : dashLink}
+          >
+            <ListItemIcon
+              sx={{ paddingLeft: "0.9rem" }}
+              className={pathname === "/overview" ? iconColor : iconInactive}
+            >
+              <FontAwesomeIcon icon={faGaugeSimple} />
+            </ListItemIcon>
+            <ListItemText primary="Overview" />
+          </Link>
         </ListItem>
         <ListItem button className={removeBorder}>
-          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
-            <FontAwesomeIcon icon={faCalendarDays} />
-          </ListItemIcon>
-          <ListItemText primary="Calender" />
+          <Link
+            to="/calendar"
+            className={pathname === "/calendar" ? activeColor : dashLink}
+          >
+            <ListItemIcon
+              sx={{ paddingLeft: "0.9rem" }}
+              className={pathname === "/calendar" ? iconColor : iconInactive}
+            >
+              <FontAwesomeIcon icon={faCalendarDays} />
+            </ListItemIcon>
+            <ListItemText primary="Calender" />
+          </Link>
         </ListItem>
         <ListItem button className={removeBorder}>
           <Link
             to="/patientList"
             className={pathname === "/patientList" ? activeColor : dashLink}
           >
-            <ListItemIcon sx={{ paddingLeft: "0.6rem" }}>
+            <ListItemIcon
+              sx={{ paddingLeft: "0.6rem" }}
+              className={pathname === "/patientList" ? iconColor : iconInactive}
+            >
               <PersonOutlineOutlinedIcon />
             </ListItemIcon>
             <ListItemText primary="Patient List" />
@@ -189,30 +226,57 @@ function DashboardHome(props) {
         </ListItem>
 
         <ListItem button className={removeBorder}>
-          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
-            <FontAwesomeIcon icon={faCommentDots} />
-          </ListItemIcon>
-          <ListItemText primary="Messages" />
+          <Link
+            to="/messages"
+            className={pathname === "/messages" ? activeColor : dashLink}
+          >
+            <ListItemIcon
+              sx={{ paddingLeft: "0.9rem" }}
+              className={pathname === "/messages" ? iconColor : iconInactive}
+            >
+              <FontAwesomeIcon icon={faCommentDots} />
+            </ListItemIcon>
+            <ListItemText primary="Messages" />
+          </Link>
         </ListItem>
         <ListItem button className={removeBorder}>
-          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
-            <FontAwesomeIcon icon={faSackDollar} />
-          </ListItemIcon>
-          <ListItemText primary="Payment Information" />
+          <Link
+            to="/paymentInfo"
+            className={pathname === "/paymentInfo" ? activeColor : dashLink}
+          >
+            <ListItemIcon
+              sx={{ paddingLeft: "0.9rem" }}
+              className={pathname === "/paymentInfo" ? iconColor : iconInactive}
+            >
+              <FontAwesomeIcon icon={faSackDollar} />
+            </ListItemIcon>
+            <ListItemText primary="Payment Information" />
+          </Link>
         </ListItem>
         <ListItem button className={removeBorder}>
-          <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
-            <FontAwesomeIcon icon={faSliders} />
-          </ListItemIcon>
-          <ListItemText primary="Setting" />
+          <Link
+            to="/settings"
+            className={pathname === "/settings" ? activeColor : dashLink}
+          >
+            <ListItemIcon
+              sx={{ paddingLeft: "0.9rem" }}
+              className={pathname === "/settings" ? iconColor : iconInactive}
+            >
+              <FontAwesomeIcon icon={faSliders} />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </Link>
         </ListItem>
 
-        <Box sx={{ marginTop: "13rem !important" }}>
-          <ListItem sx={{ borderBottom: "1px solid #d3ddea" }} className={removeBorder}>
+        <Box sx={{ marginTop: "12rem !important" }}>
+          <ListItem
+            sx={{ borderBottom: "1px solid #d3ddea",}}
+            className={removeBorder}
+          >
             <ListItemIcon sx={{ paddingLeft: "0.9rem" }}>
               <FontAwesomeIcon icon={faCircleInfo} />
             </ListItemIcon>
-            Help ?
+            <ListItemText sx={{color:"gray"}} primary="Help ?" />
           </ListItem>
           <ListItem>
             <Box
@@ -267,7 +331,7 @@ function DashboardHome(props) {
               display: { sm: "block", lg: "block", md: "block", xl: "none" },
             }}
           >
-            <MenuIcon sx={{ color: "red !important" }} />
+            <MenuIcon sx={{ color: "gray !important" }} />
           </IconButton>
           <Box
             sx={{
@@ -381,8 +445,8 @@ function DashboardHome(props) {
                 fontWeight: "600",
               }}
             >
-              <FontAwesomeIcon icon={faPenToSquare} />
-              <span sx={{ marginLeft: "1rem !important" }}>Edit Patient</span>
+              <FontAwesomeIcon className={editIcon} icon={faPenToSquare} />
+              <span>Edit Patient</span>
             </Box>
           </Box>
         </Box>

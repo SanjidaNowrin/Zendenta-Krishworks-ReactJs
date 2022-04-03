@@ -4,10 +4,8 @@ import { Typography, Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import user from "../../img/user2.jpg";
 import ArticleIcon from "@mui/icons-material/Article";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import DashboardHome from './DashboardHome';
 
 const PatientList = () => {
   const [appointment, setAppointment] = useState([]);
@@ -194,7 +192,7 @@ const PatientList = () => {
               <Grid item lg={4}>
                 <Box sx={{ padding: "20px 15px" }}>
                   <Typography sx={{ color: "gray", fontWeight: "600" }}>
-                    City:{" "}
+                    City:
                   </Typography>
                   <Typography> {patient[0]?.name}</Typography>
                   <Box
@@ -210,7 +208,7 @@ const PatientList = () => {
               <Grid item lg={4}>
                 <Box sx={{ padding: "20px 15px" }}>
                   <Typography sx={{ color: "gray", fontWeight: "600" }}>
-                    Zip Code:{" "}
+                    Zip Code:
                   </Typography>
                   <Typography> {patient[0]?.name}</Typography>
                   <Box
@@ -243,7 +241,7 @@ const PatientList = () => {
               <Grid item lg={4}>
                 <Box sx={{ padding: "20px 15px" }}>
                   <Typography sx={{ color: "gray", fontWeight: "600" }}>
-                    Registered Date:{" "}
+                    Registered Date:
                   </Typography>
                   <Typography>{patient[0]?.name}</Typography>
                   <Box
@@ -523,7 +521,7 @@ const PatientList = () => {
               </Box>
             </Box>
 
-            {files.slice(1, 4).map((file) => (
+            {files.slice(1, 5).map((file) => (
               <Box sx={{ padding: "10px 20px 0px" }}>
                 <Paper
                   sx={{
