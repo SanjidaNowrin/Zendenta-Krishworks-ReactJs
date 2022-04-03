@@ -15,7 +15,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import PatientList from "./PatientList";
 import { Avatar } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -35,7 +34,7 @@ import {
   faPenToSquare,
   faPrint,
 } from "@fortawesome/free-solid-svg-icons";
-import user from "../../img/user2.jpg";
+import user from "../../img/user1.jpg";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   border: "1px solid gray",
@@ -117,7 +116,6 @@ function DashboardHome(props) {
       color: "white",
       fontWeight: "400 !important",
       textDecoration: "none",
-      // css18nal3aMuiListItemIconRootColor:"white !important",
       fontSize: "15px !important",
       backgroundColor: "#0D53FC !important",
       width: "100% !important",
