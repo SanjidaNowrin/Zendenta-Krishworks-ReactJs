@@ -6,9 +6,9 @@ import user from "../../img/user2.jpg";
 import ArticleIcon from "@mui/icons-material/Article";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-
+import Appointments from './Appointments';
 const PatientList = () => {
-  const [appointment, setAppointment] = useState([]);
+ 
   const [patient, setPatient] = useState([]);
   const [files, setFiles] = useState([]);
   useEffect(() => {
@@ -16,22 +16,17 @@ const PatientList = () => {
       .then((res) => res.json())
       .then((data) => setPatient(data));
   }, []);
-  useEffect(() => {
-    fetch("https://619f39821ac52a0017ba467e.mockapi.io/patientDetails")
-      .then((res) => res.json())
-      .then((data) => setAppointment(data));
-  }, []);
-  console.log(appointment);
-
+ 
   useEffect(() => {
     fetch("https://619f39821ac52a0017ba467e.mockapi.io/Files")
       .then((res) => res.json())
       .then((data) => setFiles(data));
   }, []);
   console.log(files);
+
   return (
     <div>
-    {/* <DashboardHome/> */}
+      {/* <DashboardHome/> */}
       <Grid container spacing={2}>
         <Grid item lg={3} xl={3}>
           <Box
@@ -39,6 +34,7 @@ const PatientList = () => {
               height: "370px",
               width: "300px",
               background: "#FFFDFD",
+              borderRadius:"6px",
               padding: "40px 20px",
               margin: "0 auto",
             }}
@@ -62,10 +58,13 @@ const PatientList = () => {
             >
               {patient[0]?.name}
             </Typography>
-            <Typography  sx={{ textAlign: "center" ,color: "gray",}}>
+            <Typography sx={{ textAlign: "center", color: "gray" }}>
               diane.cooper@example.com
             </Typography>
-            <Box mt={2} sx={{ display: "flex", justifyContent: "space-around" }}>
+            <Box
+              mt={2}
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            >
               <Box>
                 <Typography
                   sx={{
@@ -80,8 +79,13 @@ const PatientList = () => {
                 <Typography sx={{ color: "gray" }}> Past</Typography>
               </Box>
 
-              <Box 
-                sx={{ height: "50px", width: "1px", background: "gray",marginLeft:"2rem" }}
+              <Box
+                sx={{
+                  height: "50px",
+                  width: "1px",
+                  background: "gray",
+                  marginLeft: "2rem",
+                }}
               ></Box>
               <Box>
                 <Typography
@@ -105,9 +109,9 @@ const PatientList = () => {
                 border: "1px solid rgba(0,0,0,.3)",
                 background: "white",
                 marginTop: "10px",
-                color: "#2D3B4C", 
-                fontWeight: "600" ,
-                borderRadius:"3px",
+                color: "#2D3B4C",
+                fontWeight: "600",
+                borderRadius: "3px",
               }}
             >
               Send Message
@@ -119,6 +123,7 @@ const PatientList = () => {
           <Box
             sx={{
               background: "#FFFDFD",
+              borderRadius:"6px",
               padding: "20px 20px 40px 20px",
               height: "370px",
               margin: "0 auto",
@@ -265,6 +270,7 @@ const PatientList = () => {
               height: "370px",
               width: "300px",
               margin: "0 auto",
+              borderRadius:"6px",
             }}
           >
             <Box
@@ -363,132 +369,9 @@ const PatientList = () => {
         {/* notes section end */}
         {/* appointment section start */}
         <Grid item lg={9} xl={9}>
-          <Box
-            sx={{
-              background: "#FFFDFD",
-              height: "370px",
-              width: "80%",
-              margin: "0 auto",
-              padding: "30px",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                height: "50px",
-                width: "80%",
-                background: "#F2F5F9 ",
-                padding: "15px",
-              }}
-            >
-              <Typography
-                sx={{
-                  height: "30px",
-                  width: "200px",
-                  background: "white",
-                  padding: "5px",
-                }}
-              >
-                Upcoming Appointment
-              </Typography>
-              <Typography sx={{ height: "30px", width: "200px" }}>
-                Post Appointment
-              </Typography>
-              <Typography sx={{ height: "30px", width: "200px" }}>
-                Medical Records
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                background: "#F2F5F9 ",
-                width: "100%",
-                margin: "10px",
-                padding: "30px",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Typography sx={{ height: "30px", width: "200px" }}>
-                  Root Canal Treatment
-                </Typography>
-                <Typography
-                  sx={{
-                    width: "250px",
-                    background: "white",
-                    padding: "10px 30px",
-                  }}
-                >
-                  Show Previous Treatment
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  height: "1px",
-                  width: "95%",
-                  background: "rgba(0,0,0,.2)",
-                  marginTop: "30px",
-                  marginBottom: "30px",
-                }}
-              ></Box>
-
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  background: "white",
-                  padding: "15px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box>
-                  <Typography variant="h4">26 Nov'19</Typography>
-                  <Typography>09.00-10.00</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    height: "30px",
-                    width: "2px",
-                    background: "rgba(0,0,0,.2)",
-                  }}
-                ></Box>
-                <Box>
-                  <Typography>Treatment:</Typography>
-                  <Typography>Open Access</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    height: "30px",
-                    width: "2px",
-                    background: "rgba(0,0,0,.2)",
-                  }}
-                ></Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Box>
-                    <Typography>Dentist:</Typography>
-                    <Typography>Drg. Adam H.</Typography>
-                  </Box>
-                  <Box>
-                    <Typography>Nurse:</Typography>
-                    <Typography>Jessicamila</Typography>
-                  </Box>
-                  <Typography>Note</Typography>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
+         <Appointments></Appointments>
         </Grid>
-         {/* appointment section end */}
+        {/* appointment section end */}
         {/* file documents start */}
         <Grid item lg={3} xl={3}>
           <Box
@@ -497,6 +380,7 @@ const PatientList = () => {
               height: "370px",
               width: "300px",
               margin: "0 auto",
+              borderRadius:"6px",
             }}
           >
             <Box
@@ -529,6 +413,7 @@ const PatientList = () => {
                     boxShadow: "1px 5px 10px #EEECEC !important",
                     borderRadius: "13px !important",
                     display: "flex",
+
                     alignItems: "center",
                     justifyContent: "space-between",
                     margin: "0 auto",
